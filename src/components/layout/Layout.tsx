@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import './Layout.css'; // 布局样式
+import '../../types/css/Layout.css'; // 布局样式
 
 const Layout: React.FC = () => {
   return (

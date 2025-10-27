@@ -1,0 +1,24 @@
+/* moved from src/styles/variables.css */
+:root {
+  /* 颜色变量 */
+  --primary: #2563eb; /* 主色调：蓝色 */
+  --primary-dark: #1d4ed8;
+  --primary-light: #eff6ff;
+  --secondary: #6366f1; /* 辅助色：靛蓝色 */
+  --text-dark: #1e293b;
+  --text-gray: #64748b;
+  --bg-light: #f8fafc;
+  --white: #ffffff;
+  
+  /* 尺寸变量 */
+  --container-width: 1200px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  
+  /* 阴影 */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GitHub, Twitter, Linkedin } from 'react-feather';
-import './Footer.css';
+import '../../types/css/Footer.css';
 
 const Footer: React.FC = () => {
   return (
@@ -17,9 +17,9 @@ const Footer: React.FC = () => {
             <Link to="/life" className="footer-link">生活记录</Link>
           </div>
           <div className="footer-social">
-            <a href="#" className="social-icon" onClick={e => e.preventDefault()}><GitHub size={20} /></a>
-            <a href="#" className="social-icon" onClick={e => e.preventDefault()}><Twitter size={20} /></a>
-            <a href="#" className="social-icon" onClick={e => e.preventDefault()}><Linkedin size={20} /></a>
+            <button type="button" className="social-icon" aria-label="GitHub"><GitHub size={20} /></button>
+            <button type="button" className="social-icon" aria-label="Twitter"><Twitter size={20} /></button>
+            <button type="button" className="social-icon" aria-label="Linkedin"><Linkedin size={20} /></button>
         </div>
         </div>
         <div className="footer-copyright">

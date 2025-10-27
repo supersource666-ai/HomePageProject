@@ -1,5 +1,5 @@
 import React from 'react';
-import './Papers.css';
+import '../../types/css/Papers.css';
 
 const Papers: React.FC = () => {
   return (

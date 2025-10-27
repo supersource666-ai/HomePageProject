@@ -1,5 +1,5 @@
 import React from 'react';
-import './Life.css';
+import '../../types/css/Life.css';
 
 const Life: React.FC = () => {
   return (

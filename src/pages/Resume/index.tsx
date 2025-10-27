@@ -1,6 +1,6 @@
 import React from 'react';
-import './Resume.css'; // 对应样式文件，后续需创建
-import { FileText, Phone, Mail, GitHub, Star, Book, Briefcase, Award, User } from 'react-feather';
+import '../../types/css/Resume.css'; // 对应样式文件，已迁移
+import { FileText, Phone, Star, Book, Briefcase, Award, User } from 'react-feather';
 
 // 个人简历组件
 const Resume: React.FC = () => {

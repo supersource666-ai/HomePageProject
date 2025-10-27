@@ -6,7 +6,7 @@ import { OrbitControls, useGLTF, Html } from '@react-three/drei';
 
 // 加载GLB模型的组件
 const GLBModel: React.FC = () => {
-  const { scene } = useGLTF('/models/ying_mu_hua_dao.glb', true);
+  const { scene } = useGLTF('/models/train400.glb', true);
 
   // 处理模型阴影和材质
   useEffect(() => {
@@ -20,7 +20,7 @@ const GLBModel: React.FC = () => {
     }
   }, [scene]);
 
-  return <primitive object={scene} scale={1.5} position={[0, -0.5, 0]} />;
+  return <primitive object={scene} scale={0.1251} position={[0, -0.5, 0]} />;
 };
 
 // 错误边界组件
@@ -81,8 +81,8 @@ const ThreeModel: React.FC = () => {
 
   return (
     <div style={{
-      width: 320, // 调整为更大
-      height: 320, // 调整为更大
+      width: 320,
+      height: 320,
       margin: '0 auto',
       borderRadius: '50%',
       overflow: 'hidden',
@@ -100,13 +100,33 @@ const ThreeModel: React.FC = () => {
           transition: 'opacity 0.5s'
         }}
       >
+        {/* 环境光 */}
         <ambientLight intensity={0.7} />
+        {/* 方向光 */}
         <directionalLight
           position={[5, 5, 5]}
           intensity={1.2}
           castShadow
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
+        />
+        {/* 新增：点光源 */}
+        <pointLight
+          position={[0, 3, 2]}
+          intensity={0.8}
+          color="#fffbe6"
+          distance={10}
+          decay={2}
+        />
+        {/* 新增：聚光灯 */}
+        <spotLight
+          position={[-3, 5, 3]}
+          angle={0.4}
+          penumbra={0.5}
+          intensity={0.7}
+          castShadow
+          color="#b4d8ff"
+          distance={15}
         />
 
         <Suspense fallback={<LoadingIndicator />}>

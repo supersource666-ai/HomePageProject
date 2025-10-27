@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FileText, GitHub, BookOpen, Calendar, ArrowRight, ChevronRight } from 'react-feather';
+import { FileText, GitHub, BookOpen, Calendar, ArrowRight } from 'react-feather';
 import ThreeModel from './ThreeModel';
-import './Home.css';
+import '../../types/css/Home.css';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -61,6 +61,7 @@ const Home: React.FC = () => {
           <span className="text-sm text-slate-500 dark:text-slate-400 mb-2">向下滚动</span>
           <ChevronRight size={20} className="rotate-90 text-slate-400" />
         </div> */}
+          {/* 滚动指示器已移除，消除未使用变量警告 */}
       </section>
 
       {/* 专业功能区 */}
