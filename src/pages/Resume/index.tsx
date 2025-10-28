@@ -24,7 +24,7 @@ const Resume: React.FC = () => {
               items={[
                 { label: "性别", value: "男" },
                 { label: "出生年月", value: "1997-11" },
-                { label: "学历", value: "博士" },
+                { label: "学历", value: "博士在读" },
                 { label: "就读院校", value: "西南交通大学" },
                 { label: "专业", value: "车辆工程" },
                 { label: "入学年份", value: "2024" }

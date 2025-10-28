@@ -1,1 +1,67 @@
 /* moved from src/pages/Projects/Projects.css */
+/* 页面整体样式 */
+.projects-page {
+  background: linear-gradient(135deg, #e3f0ff 0%, #f9f9f9 100%);
+  min-height: 100vh;
+  padding: 40px 0;
+}
+
+/* 容器居中 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 子系统卡片网格布局 */
+.subsystems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+/* 子系统卡片样式 */
+.subsystem-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(60, 120, 200, 0.08);
+  padding: 32px 24px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.subsystem-card:hover {
+  box-shadow: 0 8px 32px rgba(60, 120, 200, 0.16);
+  transform: translateY(-4px) scale(1.03);
+}
+
+/* 图标样式 */
+.subsystem-icon {
+  font-size: 48px;
+  margin-bottom: 18px;
+  background: linear-gradient(90deg, #2196f3 0%, #21cbf3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+/* 标题样式 */
+.subsystem-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2a3a5a;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* 描述样式 */
+.subsystem-desc {
+  font-size: 1rem;
+  color: #5a6a85;
+  text-align: center;
+  line-height: 1.6;
+}

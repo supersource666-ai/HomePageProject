@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FileText, GitHub, BookOpen, Calendar, ArrowRight } from 'react-feather';
+import { FileText, GitHub, BookOpen, Calendar } from 'react-feather';
+import { Card } from 'antd';
 import ThreeModel from './ThreeModel';
 import '../../types/css/Home.css';
+
+const modelPaths = [
+  '/models/train400.glb',
+  '/models/train400.glb',
+  '/models/train400.glb',
+];
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
 
-  // 监听滚动事件，用于动态效果
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -19,52 +25,29 @@ const Home: React.FC = () => {
 
   return (
     <div className="home-page min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-50">
-      {/* 专业酷炫英雄区 */}
-      <section className={`hero-section pro-hero flex flex-col items-center justify-center min-h-[85vh] py-10 md:py-16 relative overflow-hidden transition-all duration-700 ${scrolled ? 'py-6' : ''}`}>
-        {/* 背景渐变动画效果 */}
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="w-[600px] h-[600px] bg-gradient-to-tr from-blue-500 via-indigo-500 to-purple-600 opacity-20 rounded-full blur-3xl absolute -top-40 -left-40 animate-pulse" style={{ animationDuration: '8s' }} />
-          <div className="w-[400px] h-[400px] bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 opacity-20 rounded-full blur-2xl absolute -bottom-24 -right-24 animate-pulse" style={{ animationDuration: '10s', animationDelay: '1s' }} />
-          <div className="absolute inset-0 bg-grid-slate-200/10 dark:bg-grid-slate-700/10 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.5))]"></div>
-        </div>
-        
-        <div className="container flex flex-col items-center justify-center text-center relative z-10 max-w-4xl mx-auto px-4">
-          <div className="mb-8 md:mb-12 flex flex-col items-center gap-4 md:gap-6 w-full">
-            {/* 3D模型容器 - 添加进入动画 */}
-            <div className="w-full max-w-md h-48 md:h-64 mb-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
-              <ThreeModel />
-            </div>
-            
-            {/* 标题 - 添加渐变和进入动画 */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 shadow-lg opacity-0 animate-fade-in-up" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
-              仿真 · 科研 · 创新
-            </h1>
-            
-            {/* 副标题 - 添加进入动画 */}
-            <p className="text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 font-medium max-w-2xl mx-auto opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
-              专业一站式学术与科研平台，极致高效，极简体验。
+      {/* ThreeModel展示区 */}
+      <section className="hero-section pro-hero">
+        <div className="container flex flex-col md:flex-row items-center justify-center">
+          <div className="hero-text">
+            <h1 className="text-4xl font-bold mb-6 text-gradient-cool">欢迎来到主页</h1>
+            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
+              这里是庄达源的学术与生活数字空间。
             </p>
-            
-            {/* 按钮 - 添加进入动画和悬停效果 */}
-            <button
-              className="btn btn-primary px-8 py-4 text-lg font-medium rounded-full shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition-all duration-300 transform hover:scale-105 active:scale-95 mt-2 opacity-0 animate-fade-in-up"
-              style={{ animationDelay: '0.9s', animationFillMode: 'forwards' }}
-              onClick={() => navigate('/projects')}
-            >
-              立即体验 <ArrowRight size={20} className="ml-2 inline transition-transform group-hover:translate-x-1" />
-            </button>
+          </div>
+          {/* 三个并列的three-model-cool */}
+          <div className="hero-image-group" style={{ display: 'flex', gap: '32px', justifyContent: 'center' }}>
+            {modelPaths.map((path, idx) => (
+              <div key={idx} className="hero-image" style={{ position: 'relative', width: 220, height: 220 }}>
+                <div className="three-model-cool">
+                  <ThreeModel modelPath={path} />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-        
-        {/* 滚动指示器 */}
-        {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce-slow">
-          <span className="text-sm text-slate-500 dark:text-slate-400 mb-2">向下滚动</span>
-          <ChevronRight size={20} className="rotate-90 text-slate-400" />
-        </div> */}
-          {/* 滚动指示器已移除，消除未使用变量警告 */}
       </section>
 
-      {/* 专业功能区 */}
+      {/* 核心功能区 */}
       <section className="features-section py-12 md:py-20 relative">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="text-center mb-12 md:mb-16">
@@ -77,17 +60,16 @@ const Home: React.FC = () => {
           </div>
           
           <div className="features-grid pro-features grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            <FeatureCard icon={<FileText size={48} />} title="简历" link="/resume" delay={0.1} />
-            <FeatureCard icon={<GitHub size={48} />} title="项目" link="/projects" delay={0.2} />
-            <FeatureCard icon={<BookOpen size={48} />} title="论文" link="/papers" delay={0.3} />
-            <FeatureCard icon={<Calendar size={48} />} title="生活" link="/life" delay={0.4} />
+            <AntdFeatureCard icon={<FileText size={48} />} title="简历" link="/resume" delay={0.1} />
+            <AntdFeatureCard icon={<GitHub size={48} />} title="项目" link="/projects" delay={0.2} />
+            <AntdFeatureCard icon={<BookOpen size={48} />} title="论文" link="/papers" delay={0.3} />
+            <AntdFeatureCard icon={<Calendar size={48} />} title="生活" link="/life" delay={0.4} />
           </div>
         </div>
       </section>
     </div>
   );
 };
-
 
 type FeatureCardProps = {
   icon: React.ReactNode;
@@ -96,40 +78,52 @@ type FeatureCardProps = {
   delay: number;
 };
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, link, delay }) => {
+const AntdFeatureCard: React.FC<FeatureCardProps> = ({ icon, title, link, delay }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      className="feature-card pro-card flex flex-col items-center justify-center p-6 md:p-8 rounded-2xl transition-all duration-300 cursor-pointer opacity-0 animate-fade-in-up"
-      style={{ 
+    <Card
+      hoverable
+      className="feature-card pro-card flex flex-col items-center justify-center rounded-2xl transition-all duration-300 cursor-pointer opacity-0 animate-fade-in-up"
+      style={{
         animationDelay: `${delay}s`,
         animationFillMode: 'forwards',
-        backdropFilter: 'blur(12px)',
-        backgroundColor: 'rgba(255, 255, 255, 0.7)',
-        border: '1px solid rgba(255, 255, 255, 0.18)',
-        boxShadow: isHovered ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+        boxShadow: isHovered
+          ? '0 12px 32px rgba(108,99,255,0.18)'
+          : '0 4px 16px rgba(108,99,255,0.08)',
+        borderRadius: 18,
+        border: '1.5px solid rgba(108,99,255,0.13)',
+        background: isHovered
+          ? 'linear-gradient(135deg,rgba(255,255,255,0.22) 60%,rgba(108,99,255,0.18) 100%)'
+          : 'linear-gradient(135deg,rgba(255,255,255,0.22) 60%,rgba(108,99,255,0.08) 100%)',
       }}
       onClick={() => navigate(link)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      styles={{ body: { padding: '32px 0 24px 0', textAlign: 'center' } }} // 替换 bodyStyle
     >
-      <div 
-        className={`feature-icon mb-4 p-4 rounded-full transition-all duration-300 ${isHovered ? 'scale-110' : 'scale-100'} shadow-lg`}
+      <div
+        className="feature-icon mb-4 p-4 rounded-full transition-all duration-300 shadow-lg"
         style={{
-          background: isHovered ? 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)' : 'linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%)',
-          color: isHovered ? '#ffffff' : '#3b82f6'
+          background: isHovered
+            ? 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)'
+            : 'linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%)',
+          color: isHovered ? '#fff' : '#3b82f6',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: '0 auto 18px auto',
+          width: 64,
+          height: 64,
         }}
       >
-        {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, {
-          className: `transition-all duration-300`
-        }) : icon}
+        {icon}
       </div>
-      <div className="text-lg font-semibold tracking-wide text-slate-800 dark:text-slate-200 drop-shadow-sm transition-colors duration-300" style={{fontSize: '1.35rem', fontWeight: 700}}>
+      <div className="text-lg font-semibold tracking-wide text-slate-800 dark:text-slate-200 drop-shadow-sm transition-colors duration-300" style={{ fontSize: '1.35rem', fontWeight: 700 }}>
         {title}
       </div>
-    </div>
+    </Card>
   );
 };
 

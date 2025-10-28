@@ -1,14 +1,11 @@
-// 解决 <primitive /> <ambientLight /> <directionalLight /> 类型报错
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense, useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Html } from '@react-three/drei';
 
+// 加载GLB模型的组件，支持传入模型路径
+const GLBModel: React.FC<{ modelPath: string }> = ({ modelPath }) => {
+  const { scene } = useGLTF(modelPath, true);
 
-// 加载GLB模型的组件
-const GLBModel: React.FC = () => {
-  const { scene } = useGLTF('/models/train400.glb', true);
-
-  // 处理模型阴影和材质
   useEffect(() => {
     if (scene) {
       scene.traverse((obj: any) => {
@@ -76,33 +73,49 @@ const ErrorIndicator: React.FC = () => (
   </Html>
 );
 
-const ThreeModel: React.FC = () => {
-  const [isReady, setIsReady] = useState(false);
+const ThreeModel: React.FC<{ modelPath: string }> = ({ modelPath }) => {
+  const canvasWrapperRef = useRef<HTMLDivElement>(null);
+
+  // 方法3：组件卸载时清理 WebGL context
+  useEffect(() => {
+    const handleContextLost = (e: Event) => {
+      e.preventDefault();
+      window.location.reload();
+    };
+    const canvas = canvasWrapperRef.current?.querySelector('canvas');
+    if (canvas) {
+      canvas.addEventListener('webglcontextlost', handleContextLost, false);
+    }
+    return () => {
+      if (canvas) {
+        canvas.removeEventListener('webglcontextlost', handleContextLost);
+      }
+    };
+  }, []);
 
   return (
-    <div style={{
-      width: 320,
-      height: 320,
-      margin: '0 auto',
-      borderRadius: '50%',
-      overflow: 'hidden',
-      boxShadow: '0 4px 32px rgba(68,67,99,0.18)',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-    }}>
+    <div
+      ref={canvasWrapperRef}
+      style={{
+        width: 320,
+        height: 320,
+        margin: '0 auto',
+        borderRadius: '50%',
+        overflow: 'hidden',
+        boxShadow: '0 4px 32px rgba(68,67,99,0.18)',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      }}
+    >
       <Canvas
         camera={{ position: [0, 0, 3.5], fov: 50 }}
         shadows
-        onCreated={() => setIsReady(true)}
+        frameloop="demand"            // 方法2：减少资源占用
         style={{
           width: '100%',
-          height: '100%',
-          opacity: isReady ? 1 : 0,
-          transition: 'opacity 0.5s'
+          height: '100%'
         }}
       >
-        {/* 环境光 */}
         <ambientLight intensity={0.7} />
-        {/* 方向光 */}
         <directionalLight
           position={[5, 5, 5]}
           intensity={1.2}
@@ -110,7 +123,6 @@ const ThreeModel: React.FC = () => {
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
         />
-        {/* 新增：点光源 */}
         <pointLight
           position={[0, 3, 2]}
           intensity={0.8}
@@ -118,7 +130,6 @@ const ThreeModel: React.FC = () => {
           distance={10}
           decay={2}
         />
-        {/* 新增：聚光灯 */}
         <spotLight
           position={[-3, 5, 3]}
           angle={0.4}
@@ -131,7 +142,7 @@ const ThreeModel: React.FC = () => {
 
         <Suspense fallback={<LoadingIndicator />}>
           <ErrorBoundary fallback={<ErrorIndicator />}>
-            <GLBModel />
+            <GLBModel modelPath={modelPath} />
           </ErrorBoundary>
         </Suspense>
 

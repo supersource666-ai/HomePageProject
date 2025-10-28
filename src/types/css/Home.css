@@ -1,5 +1,3 @@
-/* moved from src/pages/Home/Home.css */
-
 .hero-section {
   margin-top: 0;
   min-height: 70vh;
@@ -19,8 +17,17 @@
   flex: 1;
 }
 
+.hero-image-group {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+}
+
 .hero-image {
-  flex: 1;
+  position: relative;
+  width: 220px;
+  height: 220px;
+  flex-shrink: 0;
   margin-top: 24px;
 }
 
@@ -30,7 +37,18 @@
   }
 }
 
+.three-model-cool {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 12px auto;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(108,99,255,0.18);
+  background: linear-gradient(135deg,rgba(255,255,255,0.22) 60%,rgba(108,99,255,0.08) 100%);
+  position: relative;
+}
 
+/* features区样式 */
 .features-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -52,7 +70,6 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
-
 
 .feature-card {
   background: rgba(255,255,255,0.18);
@@ -77,7 +94,6 @@
   border-color: rgba(108,99,255,0.22);
 }
 
-
 .feature-icon {
   width: 64px;
   height: 64px;
@@ -92,7 +108,6 @@
   font-size: 2rem;
 }
 
-
 .glassmorphism {
   background: rgba(255,255,255,0.18);
   backdrop-filter: blur(12px) saturate(1.2);
@@ -105,17 +120,5 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-/* 3D模型容器样式 */
-.three-model-cool {
-  width: 220px;
-  height: 220px;
-  margin: 0 auto 12px auto;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 4px 32px rgba(108,99,255,0.18);
-  background: linear-gradient(135deg,rgba(255,255,255,0.22) 60%,rgba(108,99,255,0.08) 100%);
-}
-
 
 /* 移除CTA区样式，已合并到主区 */
