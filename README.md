@@ -47,3 +47,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 # HomePageProject
 Introduce self by a project
+
+npm install lucide-react
+npm install recharts
+npm install antd
