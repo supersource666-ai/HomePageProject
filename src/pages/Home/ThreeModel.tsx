@@ -17,7 +17,7 @@ const GLBModel: React.FC<{ modelPath: string }> = ({ modelPath }) => {
     }
   }, [scene]);
 
-  return <primitive object={scene} scale={0.1251} position={[0, -0.5, 0]} />;
+  return <primitive object={scene} scale={0.1251} position={[0, 0.2, 0]} />;
 };
 
 // 错误边界组件

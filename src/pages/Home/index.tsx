@@ -6,7 +6,7 @@ import ThreeModel from './ThreeModel';
 import '../../types/css/Home.css';
 
 const modelPaths = [
-  '/models/train400.glb',
+  '/models/car_porsher.glb',
   '/models/train400.glb',
   '/models/train400.glb',
 ];
@@ -28,9 +28,9 @@ const Home: React.FC = () => {
       {/* ThreeModel展示区 */}
       <section className="hero-section pro-hero">
         <div className="container flex flex-col md:flex-row items-center justify-center">
-          <div className="hero-text">
+          <div className="hero-text w-full flex flex-col items-center justify-center text-center mb-6 md:mb-0">
             <h1 className="text-4xl font-bold mb-6 text-gradient-cool">欢迎来到主页</h1>
-            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
+            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 text-center" style={{ maxWidth: 480 }}>
               这里是庄达源的学术与生活数字空间。
             </p>
           </div>
